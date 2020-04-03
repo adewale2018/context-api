@@ -10,9 +10,9 @@ import {
   Select,
   Paper,
   Typography,
-  MenuItem,
-  CssBaseline
+  MenuItem
 } from "@material-ui/core";
+
 import { LockOutlined } from "@material-ui/icons";
 import formStyles from "./styles/FormStyle";
 

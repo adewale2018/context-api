@@ -8,6 +8,10 @@ import { Switch } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import useStyles from "./styles/NavBarStyle";
 
+import france from './img/1.png';
+import spain from './img/2.png';
+import english from './img/3.png'
+
 export default function NavBar() {
   const classes = useStyles();
 
@@ -16,7 +20,7 @@ export default function NavBar() {
       <AppBar position='static' color='primary'>
         <Toolbar>
           <IconButton className={classes.menuButton} color='inherit'>
-            <span>🏳</span>
+            <span><img src={english} alt={'flag'} className={classes.img} /></span>
           </IconButton>
           <Typography className={classes.title} variant='h6' color='inherit'>
             DEV-PRO
