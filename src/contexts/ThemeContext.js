@@ -7,10 +7,14 @@ class ThemeProvider extends Component {
     super(props);
 
     this.state = { isDarkMode: true };
+    this.toggleColor = this.toggleColor.bind(this);
+  }
+  toggleColor() {
+    this.setState({ isDarkMode: !this.state.isDarkMode });
   }
   render() {
     return (
-      <ThemeContext.Provider value={{ ...this.state }}>
+      <ThemeContext.Provider value={{ ...this.state, toggleColor: this.toggleColor }}>
         {this.props.children}
       </ThemeContext.Provider>
     );
