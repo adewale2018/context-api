@@ -24,11 +24,11 @@ export default function NavBar(props) {
       flag: english
     },
     french: {
-      search: "Seaserser...",
+      search: "Chercher...",
       flag: france
     },
     spanish: {
-      search: "Spanish serch...",
+      search: "Buscar...",
       flag: spain
     }
   };
