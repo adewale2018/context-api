@@ -1,24 +1,20 @@
-import React, { Component, createContext } from "react";
+import React, { useState, createContext, useContext, useMemo } from "react";
 
 const ThemeContext = createContext();
 
-class ThemeProvider extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { isDarkMode: true };
-    this.toggleColor = this.toggleColor.bind(this);
+function UseTheme() {
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error(`Context must be used within the Provider`);
   }
-  toggleColor() {
-    this.setState({ isDarkMode: !this.state.isDarkMode });
-  }
-  render() {
-    return (
-      <ThemeContext.Provider value={{ ...this.state, toggleColor: this.toggleColor }}>
-        {this.props.children}
-      </ThemeContext.Provider>
-    );
-  }
+  return context;
 }
 
-export { ThemeContext, ThemeProvider };
+function ThemeProvider(props) {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const value = useMemo(() => [isDarkMode, setIsDarkMode], [isDarkMode]);
+  return <ThemeContext.Provider value={value} {...props} />;
+}
+
+export { UseTheme, ThemeProvider };

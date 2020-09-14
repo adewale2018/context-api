@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -7,8 +7,8 @@ import InputBase from "@material-ui/core/InputBase";
 import { Switch } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import useStyles from "./styles/NavBarStyle";
-import { ThemeContext } from "./contexts/ThemeContext";
-import { LanguageContext } from "./contexts/LanguageContext";
+import { UseTheme } from "./contexts/ThemeContext";
+import { useLanguage } from "./contexts/LanguageContext";
 
 import france from "./img/1.png";
 import spain from "./img/2.png";
@@ -16,21 +16,22 @@ import english from "./img/3.png";
 
 export default function NavBar(props) {
   const classes = useStyles();
-  const { isDarkMode, toggleColor } = useContext(ThemeContext);
-  const { language } = useContext(LanguageContext);
+  const [isDarkMode, setIsDarkMode] = UseTheme();
+  const toggleColor = () => setIsDarkMode(!isDarkMode);
+  const [language] = useLanguage();
   const words = {
     english: {
       search: "Search...",
-      flag: english
+      flag: english,
     },
     french: {
       search: "Chercher...",
-      flag: france
+      flag: france,
     },
     spanish: {
       search: "Buscar...",
-      flag: spain
-    }
+      flag: spain,
+    },
   };
   const { search, flag } = words[language];
   return (
@@ -55,7 +56,7 @@ export default function NavBar(props) {
               placeholder={search}
               classes={{
                 root: classes.inputRoot,
-                input: classes.inputInput
+                input: classes.inputInput,
               }}
             />
           </div>

@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useLanguage } from "./contexts/LanguageContext";
 import {
   Avatar,
   Button,
@@ -10,35 +11,36 @@ import {
   Select,
   Paper,
   Typography,
-  MenuItem
+  MenuItem,
 } from "@material-ui/core";
 
 import { LockOutlined } from "@material-ui/icons";
 import formStyles from "./styles/FormStyle";
-import { LanguageContext } from "./contexts/LanguageContext";
+// import { LanguageContext } from "./contexts/LanguageContext";
 
 const Form = () => {
   const classes = formStyles();
-  const { language, changeLanguage } = useContext(LanguageContext);
+  const [language, setLanguage] = useLanguage();
+  const changeLanguage = (e) => setLanguage(e.target.value);
   const words = {
     english: {
       email: "Email",
       signIn: "Sign In",
       password: "Password",
-      rememberMe: "Remember Me"
+      rememberMe: "Remember Me",
     },
     french: {
       email: "Adresse Electronique",
       signIn: "Se connecter",
       password: "Mot de Passe",
-      rememberMe: "Souviens-toi De Moi"
+      rememberMe: "Souviens-toi De Moi",
     },
     spanish: {
       email: "Correo Elctronico",
       signIn: "Registrarse",
       password: "Contrasena",
-      rememberMe: "Recuerdame"
-    }
+      rememberMe: "Recuerdame",
+    },
   };
   const { email, signIn, password, rememberMe } = words[language];
 
